@@ -1,0 +1,44 @@
+name: API Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  api-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 1
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements-dev.txt
+
+      - name: Lint (PEP 8)
+        run: flake8 .
+
+      - name: Run tests
+        env:
+          GOREST_TOKEN: ${{ secrets.GOREST_TOKEN }}
+        run: pytest -v --html=reports/test_report.html --self-contained-html
+
+      - name: Store report and logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-test-report-py${{ matrix.python-version }}
+          path: |
+            reports/test_report.html
+            logs/api_tests.log

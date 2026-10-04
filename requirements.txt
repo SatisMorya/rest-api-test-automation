@@ -1,0 +1,5 @@
+# Pinned to the versions the suite was developed with.
+pytest==9.1.1
+requests==2.33.1
+pytest-html==4.2.0
+jsonschema==4.26.0

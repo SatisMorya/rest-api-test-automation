@@ -1,0 +1,6 @@
+[
+  {"case_id": "invalid_email_format", "overrides": {"email": "not-an-email"}, "expected_field": "email"},
+  {"case_id": "invalid_gender_value", "overrides": {"gender": "unknown"}, "expected_field": "gender"},
+  {"case_id": "invalid_status_value", "overrides": {"status": "pending"}, "expected_field": "status"},
+  {"case_id": "duplicate_email", "reuse_existing_email": true, "overrides": {}, "expected_field": "email"}
+]

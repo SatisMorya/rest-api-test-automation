@@ -1,0 +1,17 @@
+{
+  "email_domain": "example.com",
+  "required_fields": ["name", "email", "gender", "status"],
+  "user_field_types": {"id": "int", "name": "str", "email": "str", "gender": "str", "status": "str"},
+  "non_existing_user_id": 999999999,
+  "invalid_ids": [
+    {"case_id": "well_formed_but_missing", "id": "999999999"},
+    {"case_id": "zero", "id": "0"},
+    {"case_id": "negative", "id": "-1"},
+    {"case_id": "non_numeric", "id": "abc"}
+  ],
+  "update_values": {"name": "Updated QA User", "status": "inactive"},
+  "status_and_time_checks": [
+    {"case_id": "list_users", "endpoint": "/users", "expected_status": 200},
+    {"case_id": "missing_user", "endpoint": "/users/999999999", "expected_status": 404}
+  ]
+}

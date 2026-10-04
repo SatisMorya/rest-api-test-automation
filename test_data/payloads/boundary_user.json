@@ -1,0 +1,6 @@
+[
+  {"case_id": "name_empty_0_chars", "overrides": {"name": ""}, "expected_status": 422, "expected_field": "name"},
+  {"case_id": "name_minimum_1_char", "overrides": {"name": "A"}, "expected_status": 200, "expected_field": null},
+  {"case_id": "email_blank", "overrides": {"email": ""}, "expected_status": 422, "expected_field": "email"},
+  {"case_id": "gender_outside_allowed_set", "overrides": {"gender": "other"}, "expected_status": 422, "expected_field": "gender"}
+]
